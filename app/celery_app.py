@@ -24,7 +24,7 @@ def save_deribit_tickers(base_url: str, *tickers: str):
             if res.status_code != 200:
                 continue
             result = res.json()["result"]
-            price, timestamp = result["index_price"], result["timestamp"]
+            price, timestamp = result["index_price"], result["timestamp"] / 1000
             ticker_objs.append(Ticker(symbol=t, price=price, timestamp=timestamp))
         except Exception as e:
             print(e)
