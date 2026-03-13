@@ -1,8 +1,7 @@
-from sqlalchemy.orm import DeclarativeBase
 from decimal import Decimal
 
 from sqlalchemy import DECIMAL, BigInteger
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 class Base(DeclarativeBase):

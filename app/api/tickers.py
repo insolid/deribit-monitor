@@ -1,11 +1,13 @@
+from datetime import date, datetime, time, timedelta
+from typing import Annotated
+
+from fastapi import Query
 from fastapi.routing import APIRouter
 from sqlalchemy import select
-from fastapi import HTTPException, Query
+
 from app.core.db import SessionDep
 from app.models import Ticker
 from app.schemas import Ticker as TickerSchema
-from typing import Literal, Annotated
-from datetime import date, datetime, time, timedelta
 
 router = APIRouter(prefix="/tickers", tags=["tickers"])
 

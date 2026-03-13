@@ -19,26 +19,26 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql
       
-  # celery-worker:
-  #   image: web
-  #   command: celery -A app.celery_app worker -l info
-  #   env_file:
-  #     - .env
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - redis
-  #     - db
+  celery-worker:
+    image: web
+    command: celery -A app.celery_app worker -l info
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
 
-  # celery-beat:
-  #   image: web
-  #   command: celery -A app.celery_app beat -l info
-  #   env_file:
-  #     - .env
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - redis
+  celery-beat:
+    image: web
+    command: celery -A app.celery_app beat -l info
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
 
   redis:
     image: redis:8.6-alpine
