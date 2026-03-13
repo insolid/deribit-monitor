@@ -34,9 +34,10 @@ async def get_all_prices_by_date(
     date_from: Annotated[date, Query(example="2025-01-01")],
     date_to: Annotated[date, Query(example="2025-01-02")],
 ):
-    date_from_ts = int(datetime.combine(date_from, time.min).timestamp())
-    date_to_ts = int(
-        datetime.combine(date_to + timedelta(days=1), time.min).timestamp()
+    # Convert to timestamp in milliseconds
+    date_from_ts = int(datetime.combine(date_from, time.min).timestamp()) * 1000
+    date_to_ts = (
+        int(datetime.combine(date_to + timedelta(days=1), time.min).timestamp()) * 1000
     )
 
     stmt = select(Ticker).where(
